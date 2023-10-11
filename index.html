@@ -76,6 +76,14 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <script src="js/jquery.min.js"></script>
+        <script>
+                window.addEventListener("load", (e) => {
+                if ("serviceWorker" in navigator) {
+                    navigator.serviceWorker.register('./sw.js')
+                    console.log("sw loaded");
+                }
+                })
+        </script>
         <script src="js/scripts.js"></script>
     </body>
 </html>
