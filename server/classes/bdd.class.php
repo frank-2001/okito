@@ -1,10 +1,18 @@
 <?php
 class bdd{
+
     var $host="localhost";
     var $dbname="u898308728_okito";
     var $user="u898308728_okito";
     var $pass="Code@2001";
+    
     function connect(){
+        #Base des donnees local
+        if ($_SERVER['SERVER_NAME']=="localhost") {   
+            $this->dbname='okito';
+            $this->user='root';
+            $this->pass='';
+        }
         try { 
             $bdd = new PDO("mysql:host=".$this->host.";dbname=".$this->dbname, $this->user, $this->pass);
             return $bdd;

@@ -45,3 +45,48 @@ function inter(id) {
     let url = "https://api.whatsapp.com/send/?phone=" + number + "&text=" + message + "&type=phone_number&app_absent=0"
     window.open(url);
 }
+$("#install_button").hide();
+// Installation application
+let deferredPrompt; // Allows to show the install prompt
+const installButton = document.getElementById("install_button");
+window.addEventListener("beforeinstallprompt", e => {
+  // Prevent Chrome 76 and earlier from automatically showing a prompt
+  e.preventDefault();
+  // Stash the event so it can be triggered later.
+  deferredPrompt = e;
+  // Show the install button
+  // installButton.hidden = false;
+  $("#install_button").show(500);
+  // installApp()
+  installButton.addEventListener("click", installApp);
+});
+function installApp() {
+  // Show the prompt
+  deferredPrompt.prompt();
+  installButton.disabled = true;
+
+  // Wait for the user to respond to the prompt
+  deferredPrompt.userChoice.then(choiceResult => {
+    if (choiceResult.outcome === "accepted") {
+      console.log("PWA setup accepted");
+      installButton.hidden = true;
+    } else {
+      console.log("PWA setup rejected");
+    }
+    $("#install_button").hide(500);
+    installButton.disabled = false;
+    deferredPrompt = null;
+  });
+}
+
+window.addEventListener("appinstalled", evt => {
+  // $.toast({
+  //   heading: 'Information',
+  //   text: 'Application installee avec succes',
+  //   icon: 'info',
+  //   loader: true,        // Change it to false to disable loader
+  //   loaderBg: '#131c7a',  // To change the background
+  //   hideAfter: 5000
+  // })
+
+});
