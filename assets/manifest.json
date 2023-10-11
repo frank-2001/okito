@@ -2,7 +2,7 @@
     "name":"JK Location",
     "short_name":"JK Location",
     "description":"Maisons a louer",
-    "start_url":"",
+    "start_url":"/",
     "theme_color": "#b8b8b8",
     "background_color": "#ffffff",
     "icons":[
@@ -14,6 +14,6 @@
     ],
     
     "display":"standalone",
-    "scope":"",
+    "scope":"/",
     "prefer_related_applications": false
 }
